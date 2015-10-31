@@ -1,0 +1,19 @@
+Summarise your findings here (see specification).
+
+mystery2.dat is the only puzzle my function could not solve, so it
+must be the unsolvable puzzle
+
+I added an integer variable in the solve_board function to count the
+number of times the function is called when solving the puzzle
+When solving mystery1.dat, solve_board was called 10985 times but it
+was only called 2310 times when solving mystery3.dat.
+
+Therefore,
+
+mystery1.dat must be the extremely hard puzzle and
+
+mystery3.dat must be the hard puzzle
+
+mystery1.dat: extremely hard puzzle
+mystery2.dat: unsolvable puzzle
+mystery3.dat: hard puzzle
