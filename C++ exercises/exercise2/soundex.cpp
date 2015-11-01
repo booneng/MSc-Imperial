@@ -62,7 +62,7 @@ int compare(const char *one, const char *two)
 int count(const char *surname, const char *sentence)
 {
 	int number = 0;
-	char soundex1[4], soundex2[4];
+	char soundex1[10], soundex2[10];
 	encode(surname, soundex1);
 	int i = 0;
 	while (sentence[i] != '\0')
