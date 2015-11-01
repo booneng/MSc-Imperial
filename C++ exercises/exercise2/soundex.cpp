@@ -5,7 +5,7 @@
 
 using namespace std;
 
-char digitmap(char letter)
+char digitmap(const char letter)
 {
 	if (letter == 'b' || letter == 'f' || letter == 'p' || letter == 'v')
 		return '1';
@@ -22,40 +22,41 @@ char digitmap(char letter)
 	return '0';
 }
 
-void encode(const char *surname, char *soundex)
+void encode(const char *surname, char soundex[4])
 {
 	soundex[0] = surname[0];
 	int i = 1, j=1;
 	while (j<4 && surname[i] != '\0')
 	{
-		for (char k = '1'; k <= '6'; k++)
+	  for (char k = '1'; k <= '6'; k++)
+	    {
+	      if (digitmap(surname[i]) == k)
 		{
-			if (digitmap(surname[i]) == k)
-			{
-				if (digitmap(surname[i - 1]) != k)
-				{
-					soundex[j] = k;
-					j++;
-				}
-			}
+		  if (digitmap(surname[i - 1]) != k)
+		    {
+		      soundex[j] = k;
+		      j++;
+		    }
 		}
-		i++;
+	    }
+	  i++;
 	}
 	while (j < 4)
 	{
 		soundex[j] = '0';
 		j++;
 	}
+	soundex[4] = '\0';
 }
 
-bool compare(const char *one, const char *two)
+int compare(const char *one, const char *two)
 {
 	if (one[0] == '\0')
-		return true;
+		return 1;
 	if (one[0] == two[0])
 		if (compare(one+1, two+1))
-			return true;
-	return false;
+			return 1;
+	return 0;
 }
 
 int count(const char *surname, const char *sentence)
@@ -80,12 +81,7 @@ int count(const char *surname, const char *sentence)
 			}
 			temp[j] = '\0';
 			encode(temp, soundex2);
-			cout << temp << endl;
-			cout << soundex2 << endl;
-			cout << soundex1 << endl;
-			cout << compare(soundex1, soundex2) << endl;
-			cout << strlen(soundex1) << " " << strlen(soundex2) << endl << endl;
-			if (!strcmp(soundex1, soundex2))
+	        	if (!strcmp(soundex1, soundex2))
 			{
 				number++;
 			}

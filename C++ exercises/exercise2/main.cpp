@@ -9,6 +9,6 @@ int main()
 	cout << soundex << endl;
 	int i;
 	i = count("Leeson", "Linnings, Lesson, Lesson, Lemon.");
-	cout << i << endl;
+	cout << "number is " << i << endl;
 	return 0;
 }
